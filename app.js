@@ -735,26 +735,29 @@ function render() {
   grid.replaceChildren(fragment);
   empty.hidden = list.length > 0;
 }
-let searchScrollTimer;
-
-search.addEventListener("input", () => {
+function showSearchResults() {
   render();
 
-  const q = (search.value || "").trim();
+  if ((search.value || "").trim()) {
+    document.querySelector("#tools")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}
 
-  clearTimeout(searchScrollTimer);
+// Keep results updating while the visitor types, but do not move the page
+// until they explicitly submit the search.
+search.addEventListener("input", render);
 
-  // Once the visitor has entered a meaningful query, bring the actual
-  // directory results into view instead of leaving Browse by Need above them.
-  if (q.length >= 2) {
-    searchScrollTimer = setTimeout(() => {
-      document.querySelector("#tools")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }, 250);
+search.addEventListener("keydown", event => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    showSearchResults();
   }
 });
+
+document.querySelector("#searchButton")?.addEventListener("click", showSearchResults);
 
 sort.addEventListener("change", render);
 
