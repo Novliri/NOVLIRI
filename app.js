@@ -523,33 +523,161 @@ function createToolCard(tool) {
   return article;
 }
 
-function render() {
-  const q = (search.value || "").toLowerCase().trim();
+// Natural-language search vocabulary. This lets visitors search by what
+// they want to accomplish instead of needing to know a product name.
+const searchIntents = {
+  logo: ["logo", "brand", "branding", "graphic", "design"],
+  design: ["design", "graphic", "graphics", "visual", "creative", "image"],
+  writing: ["write", "writing", "grammar", "spelling", "proofread", "rewrite", "essay", "email", "copy"],
+  research: ["research", "answer", "information", "sources", "learn"],
+  education: ["school", "homework", "study", "studying", "student", "learn", "education", "class", "course"],
+  math: ["math", "mathematics", "calculate", "equation", "algebra"],
+  website: ["website", "web", "site", "webpage", "no code", "no-code", "landing page"],
+  coding: ["code", "coding", "programming", "developer", "software development", "debug"],
+  video: ["video", "edit video", "video editor", "record", "screen recording"],
+  audio: ["audio", "podcast", "transcription", "sound"],
+  marketing: ["marketing", "promote", "promotion", "audience", "campaign"],
+  social: ["social", "social media", "post", "posts", "content creator"],
+  email: ["email", "newsletter", "mailing list", "email marketing"],
+  automation: ["automate", "automation", "workflow", "repetitive", "connect apps"],
+  productivity: ["productive", "productivity", "organize", "organization", "tasks", "to do", "todo"],
+  projects: ["project", "projects", "project management", "tasks", "team work"],
+  scheduling: ["schedule", "scheduling", "appointment", "booking", "meeting"],
+  business: ["business", "company", "small business", "manage business", "operations"],
+  sales: ["sales", "sell", "selling", "crm", "customers", "leads"],
+  ecommerce: ["ecommerce", "e-commerce", "online store", "store", "shop", "sell online"],
+  accounting: ["accounting", "bookkeeping", "invoice", "invoicing", "expenses", "finance"],
+  forms: ["form", "forms", "survey", "surveys", "quiz", "feedback"],
+  communication: ["communicate", "communication", "chat", "message", "team communication"],
+  meetings: ["meeting", "meetings", "video call", "conference", "zoom"],
+  storage: ["storage", "cloud storage", "files", "file sharing", "share files"],
+  documents: ["document", "documents", "spreadsheet", "presentation", "office"],
+  notes: ["notes", "note taking", "knowledge", "wiki"],
+  ai: ["ai", "artificial intelligence", "assistant", "chatbot"],
+  languages: ["language", "languages", "learn language", "translation"],
+  photos: ["photo", "photos", "photography", "stock photo", "images"],
+  ui: ["ui", "ux", "prototype", "wireframe", "interface design"],
+  hosting: ["hosting", "deploy", "deployment", "host website"]
+};
 
-  const list = tools.filter(tool => {
-    const searchable = [
-      tool.name,
-      tool.cat,
-      tool.desc,
-      ...(tool.needs || [])
-    ].join(" ").toLowerCase();
+const stopWords = new Set([
+  "a", "an", "and", "are", "can", "do", "for", "help", "i", "is", "it",
+  "me", "my", "need", "of", "please", "something", "that", "the", "to",
+  "tool", "tools", "want", "with", "without"
+]);
 
-    return !q || searchable.includes(q);
+function normalizeSearchText(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9+#.-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getQueryTerms(query) {
+  const normalized = normalizeSearchText(query);
+  const words = normalized
+    .split(" ")
+    .filter(word => word.length > 1 && !stopWords.has(word));
+
+  const expanded = new Set(words);
+
+  Object.entries(searchIntents).forEach(([intent, phrases]) => {
+    const matched = phrases.some(phrase => {
+      const normalizedPhrase = normalizeSearchText(phrase);
+      return (
+        normalized.includes(normalizedPhrase) ||
+        words.includes(normalizedPhrase)
+      );
+    });
+
+    if (matched) {
+      expanded.add(intent);
+      phrases.forEach(phrase => {
+        normalizeSearchText(phrase)
+          .split(" ")
+          .filter(word => word.length > 1 && !stopWords.has(word))
+          .forEach(word => expanded.add(word));
+      });
+    }
   });
 
-  if (sort.value === "name") {
-    list.sort((a, b) => a.name.localeCompare(b.name));
+  return {
+    normalized,
+    terms: [...expanded]
+  };
+}
+
+function scoreTool(tool, query) {
+  const { normalized, terms } = getQueryTerms(query);
+
+  if (!normalized) {
+    return 0;
+  }
+
+  const name = normalizeSearchText(tool.name);
+  const category = normalizeSearchText(tool.cat);
+  const description = normalizeSearchText(tool.desc);
+  const needs = normalizeSearchText((tool.needs || []).join(" "));
+
+  let score = 0;
+
+  // Exact/near-exact product searches should remain strongest.
+  if (name === normalized) score += 100;
+  else if (name.includes(normalized)) score += 60;
+
+  // Rank matches by how useful each field is for discovery.
+  terms.forEach(term => {
+    if (name.includes(term)) score += 18;
+    if (needs.includes(term)) score += 12;
+    if (category.includes(term)) score += 9;
+    if (description.includes(term)) score += 6;
+  });
+
+  // Reward tools that satisfy several different parts of the request.
+  const matchedTerms = terms.filter(term =>
+    [name, category, needs, description].some(field => field.includes(term))
+  ).length;
+
+  score += matchedTerms * 3;
+
+  return score;
+}
+
+function render() {
+  const q = (search.value || "").trim();
+
+  let list;
+
+  if (!q) {
+    list = tools.map(tool => ({ tool, score: 0 }));
   } else {
-    list.sort(
-      (a, b) =>
-        Number(Boolean(b.featured)) -
-        Number(Boolean(a.featured))
+    list = tools
+      .map(tool => ({
+        tool,
+        score: scoreTool(tool, q)
+      }))
+      .filter(result => result.score > 0);
+  }
+
+  if (sort.value === "name") {
+    list.sort((a, b) => a.tool.name.localeCompare(b.tool.name));
+  } else if (q) {
+    list.sort((a, b) =>
+      b.score - a.score ||
+      Number(Boolean(b.tool.featured)) - Number(Boolean(a.tool.featured)) ||
+      a.tool.name.localeCompare(b.tool.name)
+    );
+  } else {
+    list.sort((a, b) =>
+      Number(Boolean(b.tool.featured)) -
+      Number(Boolean(a.tool.featured))
     );
   }
 
   const fragment = document.createDocumentFragment();
 
-  list.forEach(tool => {
+  list.forEach(({ tool }) => {
     fragment.appendChild(createToolCard(tool));
   });
 
