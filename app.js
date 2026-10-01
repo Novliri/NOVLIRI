@@ -523,18 +523,18 @@ function createToolCard(tool) {
   return article;
 }
 
-// Natural-language search vocabulary. This lets visitors search by what
-// they want to accomplish instead of needing to know a product name.
+// Natural-language search vocabulary. Visitors can search by what they
+// want to accomplish instead of needing to know a product name.
 const searchIntents = {
-  logo: ["logo", "brand", "branding", "graphic", "design"],
+  logo: ["logo", "brand", "branding"],
   design: ["design", "graphic", "graphics", "visual", "creative", "image"],
-  writing: ["write", "writing", "grammar", "spelling", "proofread", "rewrite", "essay", "email", "copy"],
-  research: ["research", "answer", "information", "sources", "learn"],
+  writing: ["write", "writing", "grammar", "spelling", "proofread", "rewrite", "essay", "copy"],
+  research: ["research", "answer", "information", "sources"],
   education: ["school", "homework", "study", "studying", "student", "learn", "education", "class", "course"],
   math: ["math", "mathematics", "calculate", "equation", "algebra"],
-  website: ["website", "web", "site", "webpage", "no code", "no-code", "landing page"],
+  website: ["website", "web site", "webpage", "landing page", "no code", "no-code"],
   coding: ["code", "coding", "programming", "developer", "software development", "debug"],
-  video: ["video", "edit video", "video editor", "record", "screen recording"],
+  video: ["video", "edit video", "video editor", "video editing"],
   audio: ["audio", "podcast", "transcription", "sound"],
   marketing: ["marketing", "promote", "promotion", "audience", "campaign"],
   social: ["social", "social media", "post", "posts", "content creator"],
@@ -542,14 +542,14 @@ const searchIntents = {
   automation: ["automate", "automation", "workflow", "repetitive", "connect apps"],
   productivity: ["productive", "productivity", "organize", "organization", "tasks", "to do", "todo"],
   projects: ["project", "projects", "project management", "tasks", "team work"],
-  scheduling: ["schedule", "scheduling", "appointment", "booking", "meeting"],
+  scheduling: ["schedule", "scheduling", "appointment", "booking"],
   business: ["business", "company", "small business", "manage business", "operations"],
   sales: ["sales", "sell", "selling", "crm", "customers", "leads"],
   ecommerce: ["ecommerce", "e-commerce", "online store", "store", "shop", "sell online"],
   accounting: ["accounting", "bookkeeping", "invoice", "invoicing", "expenses", "finance"],
   forms: ["form", "forms", "survey", "surveys", "quiz", "feedback"],
   communication: ["communicate", "communication", "chat", "message", "team communication"],
-  meetings: ["meeting", "meetings", "video call", "conference", "zoom"],
+  meetings: ["meeting", "meetings", "video call", "conference"],
   storage: ["storage", "cloud storage", "files", "file sharing", "share files"],
   documents: ["document", "documents", "spreadsheet", "presentation", "office"],
   notes: ["notes", "note taking", "knowledge", "wiki"],
@@ -559,6 +559,25 @@ const searchIntents = {
   ui: ["ui", "ux", "prototype", "wireframe", "interface design"],
   hosting: ["hosting", "deploy", "deployment", "host website"]
 };
+
+// High-confidence task rules give extra weight to products that genuinely
+// perform the requested job, rather than merely mentioning a related word.
+const taskRules = [
+  { phrases: ["logo", "branding", "make a logo", "create a logo"], names: ["Canva", "Adobe Express", "Figma"], bonus: 45 },
+  { phrases: ["edit video", "video editor", "video editing"], names: ["Descript", "Adobe Express", "Canva"], bonus: 50 },
+  { phrases: ["build a website", "make a website", "website without coding", "website no code", "no code website", "landing page"], names: ["Webflow", "Wix", "Squarespace", "Systeme.io"], bonus: 50 },
+  { phrases: ["grammar", "proofread", "fix my writing", "improve my writing", "write better"], names: ["Grammarly", "ChatGPT", "Claude"], bonus: 45 },
+  { phrases: ["homework", "study", "studying", "school help"], names: ["Khan Academy", "Quizlet", "ChatGPT", "Wolfram Alpha"], bonus: 40 },
+  { phrases: ["automate", "automation", "repetitive tasks", "connect apps"], names: ["Zapier", "Make", "Systeme.io"], bonus: 50 },
+  { phrases: ["manage my business", "manage business", "crm", "sales leads"], names: ["HubSpot", "Systeme.io", "Salesforce"], bonus: 40 },
+  { phrases: ["online store", "sell online", "ecommerce", "e-commerce"], names: ["Shopify", "Systeme.io", "Squarespace", "Wix"], bonus: 50 },
+  { phrases: ["accounting", "bookkeeping", "invoice", "expenses"], names: ["QuickBooks", "FreshBooks"], bonus: 50 },
+  { phrases: ["social media", "schedule posts", "social posts"], names: ["Buffer", "Hootsuite", "Canva"], bonus: 45 },
+  { phrases: ["email marketing", "newsletter", "mailing list"], names: ["Mailchimp", "Brevo", "Kit", "Systeme.io"], bonus: 45 },
+  { phrases: ["schedule meeting", "book meeting", "appointment scheduling"], names: ["Calendly"], bonus: 55 },
+  { phrases: ["cloud storage", "share files", "file sharing"], names: ["Dropbox", "Google Workspace", "Microsoft 365"], bonus: 45 },
+  { phrases: ["write code", "coding", "programming", "code editor"], names: ["Visual Studio Code", "GitHub", "GitLab", "ChatGPT", "Claude"], bonus: 40 }
+];
 
 const stopWords = new Set([
   "a", "an", "and", "are", "can", "do", "for", "help", "i", "is", "it",
@@ -574,6 +593,12 @@ function normalizeSearchText(value) {
     .trim();
 }
 
+function textHasTerm(text, term) {
+  const haystack = ` ${normalizeSearchText(text)} `;
+  const needle = ` ${normalizeSearchText(term)} `;
+  return haystack.includes(needle);
+}
+
 function getQueryTerms(query) {
   const normalized = normalizeSearchText(query);
   const words = normalized
@@ -581,39 +606,31 @@ function getQueryTerms(query) {
     .filter(word => word.length > 1 && !stopWords.has(word));
 
   const expanded = new Set(words);
+  const matchedIntents = new Set();
 
   Object.entries(searchIntents).forEach(([intent, phrases]) => {
     const matched = phrases.some(phrase => {
       const normalizedPhrase = normalizeSearchText(phrase);
-      return (
-        normalized.includes(normalizedPhrase) ||
-        words.includes(normalizedPhrase)
-      );
+      return normalized.includes(normalizedPhrase);
     });
 
     if (matched) {
+      matchedIntents.add(intent);
       expanded.add(intent);
-      phrases.forEach(phrase => {
-        normalizeSearchText(phrase)
-          .split(" ")
-          .filter(word => word.length > 1 && !stopWords.has(word))
-          .forEach(word => expanded.add(word));
-      });
     }
   });
 
   return {
     normalized,
-    terms: [...expanded]
+    terms: [...expanded],
+    matchedIntents: [...matchedIntents]
   };
 }
 
 function scoreTool(tool, query) {
-  const { normalized, terms } = getQueryTerms(query);
+  const { normalized, terms, matchedIntents } = getQueryTerms(query);
 
-  if (!normalized) {
-    return 0;
-  }
+  if (!normalized) return 0;
 
   const name = normalizeSearchText(tool.name);
   const category = normalizeSearchText(tool.cat);
@@ -621,25 +638,62 @@ function scoreTool(tool, query) {
   const needs = normalizeSearchText((tool.needs || []).join(" "));
 
   let score = 0;
+  let strongMatches = 0;
 
-  // Exact/near-exact product searches should remain strongest.
-  if (name === normalized) score += 100;
-  else if (name.includes(normalized)) score += 60;
+  // Exact product searches stay strongest.
+  if (name === normalized) {
+    score += 120;
+    strongMatches += 2;
+  } else if (name.includes(normalized) && normalized.length >= 3) {
+    score += 70;
+    strongMatches += 1;
+  }
 
-  // Rank matches by how useful each field is for discovery.
   terms.forEach(term => {
-    if (name.includes(term)) score += 18;
-    if (needs.includes(term)) score += 12;
-    if (category.includes(term)) score += 9;
-    if (description.includes(term)) score += 6;
+    if (textHasTerm(name, term)) {
+      score += 24;
+      strongMatches += 1;
+    }
+    if (textHasTerm(needs, term)) {
+      score += 18;
+      strongMatches += 1;
+    }
+    if (textHasTerm(category, term)) {
+      score += 10;
+      strongMatches += 1;
+    }
+    if (textHasTerm(description, term)) {
+      score += 4;
+    }
   });
 
-  // Reward tools that satisfy several different parts of the request.
-  const matchedTerms = terms.filter(term =>
-    [name, category, needs, description].some(field => field.includes(term))
-  ).length;
+  // An intent matching a declared tool need is more meaningful than a
+  // coincidental description match.
+  matchedIntents.forEach(intent => {
+    if (textHasTerm(needs, intent)) {
+      score += 20;
+      strongMatches += 1;
+    }
+    if (textHasTerm(category, intent)) {
+      score += 12;
+      strongMatches += 1;
+    }
+  });
 
-  score += matchedTerms * 3;
+  // Apply curated bonuses for common natural-language jobs.
+  taskRules.forEach(rule => {
+    const phraseMatched = rule.phrases.some(phrase =>
+      normalized.includes(normalizeSearchText(phrase))
+    );
+
+    if (phraseMatched && rule.names.includes(tool.name)) {
+      score += rule.bonus;
+      strongMatches += 2;
+    }
+  });
+
+  // Weak description-only coincidences should not become search results.
+  if (strongMatches === 0 && score < 12) return 0;
 
   return score;
 }
@@ -653,11 +707,8 @@ function render() {
     list = tools.map(tool => ({ tool, score: 0 }));
   } else {
     list = tools
-      .map(tool => ({
-        tool,
-        score: scoreTool(tool, q)
-      }))
-      .filter(result => result.score > 0);
+      .map(tool => ({ tool, score: scoreTool(tool, q) }))
+      .filter(result => result.score >= 12);
   }
 
   if (sort.value === "name") {
@@ -684,7 +735,6 @@ function render() {
   grid.replaceChildren(fragment);
   empty.hidden = list.length > 0;
 }
-
 search.addEventListener("input", render);
 sort.addEventListener("change", render);
 
