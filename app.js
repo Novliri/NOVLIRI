@@ -735,7 +735,27 @@ function render() {
   grid.replaceChildren(fragment);
   empty.hidden = list.length > 0;
 }
-search.addEventListener("input", render);
+let searchScrollTimer;
+
+search.addEventListener("input", () => {
+  render();
+
+  const q = (search.value || "").trim();
+
+  clearTimeout(searchScrollTimer);
+
+  // Once the visitor has entered a meaningful query, bring the actual
+  // directory results into view instead of leaving Browse by Need above them.
+  if (q.length >= 2) {
+    searchScrollTimer = setTimeout(() => {
+      document.querySelector("#tools")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }, 250);
+  }
+});
+
 sort.addEventListener("change", render);
 
 document.querySelectorAll(".category").forEach(button => {
