@@ -416,6 +416,17 @@ const tools = [
     url: "https://www.microsoft.com/microsoft-365/"
   },
 
+  // AI GAME MODDING
+  {
+    name: "Universal Modder",
+    cat: "Developer",
+    needs: ["AI", "Coding", "Developer", "Game Modding", "Mods", "PC Games", "Claude Code", "Codex", "Cursor", "Gemini CLI", "Open Source"],
+    desc: "Open-source toolkit that helps AI coding agents inspect supported PC games, determine modding approaches, create mod code and assets, test projects, and package results.",
+    price: "Free / Open Source",
+    url: "https://github.com/rehan-remade/universal-modder",
+    featured: true
+  },
+
   // DEVELOPER TOOLS
   {
     name: "GitHub",
@@ -557,7 +568,8 @@ const searchIntents = {
   languages: ["language", "languages", "learn language", "translation"],
   photos: ["photo", "photos", "photography", "stock photo", "images"],
   ui: ["ui", "ux", "prototype", "wireframe", "interface design"],
-  hosting: ["hosting", "deploy", "deployment", "host website"]
+  hosting: ["hosting", "deploy", "deployment", "host website"],
+  modding: ["mod", "mods", "modding", "game mod", "game mods", "game modding", "mod a game", "mod pc game", "minecraft mod", "terraria mod", "gta mod"]
 };
 
 // High-confidence task rules give extra weight to products that genuinely
@@ -576,7 +588,8 @@ const taskRules = [
   { phrases: ["email marketing", "newsletter", "mailing list"], names: ["Mailchimp", "Brevo", "Kit", "Systeme.io"], bonus: 45 },
   { phrases: ["schedule meeting", "book meeting", "appointment scheduling"], names: ["Calendly"], bonus: 55 },
   { phrases: ["cloud storage", "share files", "file sharing"], names: ["Dropbox", "Google Workspace", "Microsoft 365"], bonus: 45 },
-  { phrases: ["write code", "coding", "programming", "code editor"], names: ["Visual Studio Code", "GitHub", "GitLab", "ChatGPT", "Claude"], bonus: 40 }
+  { phrases: ["write code", "coding", "programming", "code editor"], names: ["Visual Studio Code", "GitHub", "GitLab", "ChatGPT", "Claude"], bonus: 40 },
+  { phrases: ["mod a game", "mod games", "game mod", "game mods", "game modding", "ai game modding", "minecraft mod", "terraria mod", "gta mod"], names: ["Universal Modder"], bonus: 70 }
 ];
 
 const stopWords = new Set([
