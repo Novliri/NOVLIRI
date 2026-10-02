@@ -424,7 +424,10 @@ const tools = [
     desc: "Open-source toolkit that helps AI coding agents inspect supported PC games, determine modding approaches, create mod code and assets, test projects, and package results.",
     price: "Free / Open Source",
     url: "https://github.com/rehan-remade/universal-modder",
-    featured: true
+    featured: true,
+    thirdParty: true,
+    creator: "rehan-remade",
+    originalProject: true
   },
 
   // DEVELOPER TOOLS
@@ -529,7 +532,17 @@ function createToolCard(tool) {
   }
 
   bottom.append(price, link);
-  article.append(top, heading, description, bottom);
+  article.append(top, heading, description);
+
+  if (tool.thirdParty) {
+    const notice = document.createElement("p");
+    notice.className = "third-party-notice";
+    notice.textContent = `Third-party project by ${tool.creator || "its respective creator"}. NOVLIRI does not own, operate, or endorse this project. Names and trademarks belong to their respective owners.`;
+    article.appendChild(notice);
+    if (tool.originalProject) link.textContent = "Original project ↗";
+  }
+
+  article.append(bottom);
 
   return article;
 }
