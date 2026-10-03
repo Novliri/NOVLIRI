@@ -1,5 +1,29 @@
 [
   {
+    "title": "Gemini 4 Argon: our next era of frontier intelligence",
+    "summary": "A recent artificial intelligence development reported by Google DeepMind. Open the original source for the complete report.",
+    "category": "AI News",
+    "source": "Google DeepMind",
+    "published": "2026-09-30T20:01:45.000Z",
+    "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/"
+  },
+  {
+    "title": "Introducing SynthID Bio",
+    "summary": "A recent artificial intelligence development reported by Google DeepMind. Open the original source for the complete report.",
+    "category": "AI News",
+    "source": "Google DeepMind",
+    "published": "2026-09-30T15:03:07.000Z",
+    "url": "https://deepmind.google/blog/introducing-synthid-bio/"
+  },
+  {
+    "title": "Dutch Police Arrest ‘Reformed’ Hacker in Shiny Hunters Investigation",
+    "summary": "A recent cybersecurity development reported by Krebs on Security. Read the original report for technical details and recommended actions.",
+    "category": "Cybersecurity",
+    "source": "Krebs on Security",
+    "published": "2026-09-28T15:08:57.000Z",
+    "url": "https://krebsonsecurity.com/2026/09/dutch-police-arrest-reformed-hacker-in-shiny-hunters-investigation/"
+  },
+  {
     "title": "Stay current with the biggest developments in artificial intelligence",
     "summary": "NOVLIRI Learn will surface important AI developments and explain why they may matter to people using AI at work, school, business, or home.",
     "category": "AI News",
@@ -86,21 +110,5 @@
     "source": "Google DeepMind",
     "published": "2026-09-23T15:25:14.000Z",
     "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech/"
-  },
-  {
-    "title": "Data Broker Radaris Loses Domains in Privacy Fight",
-    "summary": "A recent cybersecurity development reported by Krebs on Security. Read the original report for technical details and recommended actions.",
-    "category": "Cybersecurity",
-    "source": "Krebs on Security",
-    "published": "2026-09-16T18:14:22.000Z",
-    "url": "https://krebsonsecurity.com/2026/09/data-broker-radaris-loses-domains-in-privacy-fight/"
-  },
-  {
-    "title": "Introducing Gemini 3.8 Live and 3.8 Live Extended Thinking",
-    "summary": "A recent artificial intelligence development reported by Google DeepMind. Open the original source for the complete report.",
-    "category": "AI News",
-    "source": "Google DeepMind",
-    "published": "2026-09-15T17:05:57.000Z",
-    "url": "https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking/"
   }
 ]
