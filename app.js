@@ -1,4 +1,4 @@
-const tools = window.NOVLIRI_TOOLS || [];
+const tools = globalThis.NOVLIRI_TOOLS || [];
 const grid = document.querySelector("#toolGrid");
 const search = document.querySelector("#search");
 const sort = document.querySelector("#sort");
