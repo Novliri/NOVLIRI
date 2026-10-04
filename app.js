@@ -474,6 +474,401 @@ const tools = [
     price: "View options",
     url: "https://www.grammarly.com/"
   }
+
+  // DIRECTORY EXPANSION
+  {
+    name: "Microsoft Copilot",
+    cat: "AI & Automation",
+    needs: ["AI","Writing","Research","Productivity"],
+    desc: "Microsoft AI assistant for research, writing, productivity, and everyday tasks.",
+    price: "Free option",
+    url: "https://copilot.microsoft.com/"
+  },
+  {
+    name: "Poe",
+    cat: "AI & Automation",
+    needs: ["AI","Chatbot","Writing","Research"],
+    desc: "AI chat platform for accessing and exploring a range of AI models and bots.",
+    price: "Free option",
+    url: "https://poe.com/"
+  },
+  {
+    name: "Hugging Face",
+    cat: "AI & Automation",
+    needs: ["AI","Developer","Machine Learning","Models"],
+    desc: "Platform and community for discovering, sharing, and working with machine-learning models and datasets.",
+    price: "Free option",
+    url: "https://huggingface.co/"
+  },
+  {
+    name: "ElevenLabs",
+    cat: "AI & Automation",
+    needs: ["AI","Audio","Voice","Creators"],
+    desc: "AI audio platform for text-to-speech, voice generation, dubbing, and other audio workflows.",
+    price: "View options",
+    url: "https://elevenlabs.io/"
+  },
+  {
+    name: "DeepL",
+    cat: "AI & Automation",
+    needs: ["AI","Translation","Languages","Writing"],
+    desc: "Translation and writing tools for working across languages.",
+    price: "Free option",
+    url: "https://www.deepl.com/"
+  },
+  {
+    name: "Otter.ai",
+    cat: "AI & Automation",
+    needs: ["AI","Transcription","Meetings","Audio"],
+    desc: "AI meeting assistant for transcription, notes, summaries, and searchable conversations.",
+    price: "Free option",
+    url: "https://otter.ai/"
+  },
+  {
+    name: "Gamma",
+    cat: "AI & Automation",
+    needs: ["AI","Presentations","Design","Business"],
+    desc: "AI-powered tool for creating presentations, documents, and visual content.",
+    price: "Free option",
+    url: "https://gamma.app/"
+  },
+  {
+    name: "Photopea",
+    cat: "Design & Creative",
+    needs: ["Design","Photos","Image","Editing"],
+    desc: "Browser-based image editor for graphics, photos, PSD files, and other design formats.",
+    price: "Free option",
+    url: "https://www.photopea.com/"
+  },
+  {
+    name: "remove.bg",
+    cat: "Design & Creative",
+    needs: ["Design","Photos","Background Removal","Image"],
+    desc: "Online tool for automatically removing backgrounds from images.",
+    price: "Free option",
+    url: "https://www.remove.bg/"
+  },
+  {
+    name: "GIMP",
+    cat: "Design & Creative",
+    needs: ["Design","Photos","Image","Open Source"],
+    desc: "Free open-source image editor for photo manipulation, graphics, and creative work.",
+    price: "Free / Open Source",
+    url: "https://www.gimp.org/"
+  },
+  {
+    name: "Blender",
+    cat: "Design & Creative",
+    needs: ["Design","3D","Animation","Video","Open Source"],
+    desc: "Free open-source suite for 3D modeling, animation, rendering, compositing, and more.",
+    price: "Free / Open Source",
+    url: "https://www.blender.org/"
+  },
+  {
+    name: "CapCut",
+    cat: "Design & Creative",
+    needs: ["Video","Video Editing","Creators","Social Media"],
+    desc: "Video editing platform with tools for short-form content, captions, effects, and creative editing.",
+    price: "Free option",
+    url: "https://www.capcut.com/"
+  },
+  {
+    name: "DaVinci Resolve",
+    cat: "Design & Creative",
+    needs: ["Video","Video Editing","Audio","Creators"],
+    desc: "Professional video editing, color correction, visual effects, motion graphics, and audio software.",
+    price: "Free option",
+    url: "https://www.blackmagicdesign.com/products/davinciresolve"
+  },
+  {
+    name: "OBS Studio",
+    cat: "Design & Creative",
+    needs: ["Video","Streaming","Recording","Open Source"],
+    desc: "Free open-source software for video recording and live streaming.",
+    price: "Free / Open Source",
+    url: "https://obsproject.com/"
+  },
+  {
+    name: "Audacity",
+    cat: "Design & Creative",
+    needs: ["Audio","Recording","Editing","Open Source"],
+    desc: "Free open-source audio editor and recorder for podcasts, music, voice, and other audio projects.",
+    price: "Free / Open Source",
+    url: "https://www.audacityteam.org/"
+  },
+  {
+    name: "HandBrake",
+    cat: "Design & Creative",
+    needs: ["Video","Converter","Compression","Open Source"],
+    desc: "Free open-source video transcoder for converting and compressing video files.",
+    price: "Free / Open Source",
+    url: "https://handbrake.fr/"
+  },
+  {
+    name: "Pexels",
+    cat: "Design & Creative",
+    needs: ["Photos","Video","Stock Media","Creators"],
+    desc: "Free stock photo and video library for creative projects.",
+    price: "Free",
+    url: "https://www.pexels.com/"
+  },
+  {
+    name: "Framer",
+    cat: "Design & Creative",
+    needs: ["Websites","Design","No Code","Landing Pages"],
+    desc: "Visual website builder for creating responsive sites, landing pages, and interactive web experiences.",
+    price: "Free option",
+    url: "https://www.framer.com/"
+  },
+  {
+    name: "Carrd",
+    cat: "Design & Creative",
+    needs: ["Websites","Landing Pages","No Code","Creators"],
+    desc: "Simple website builder for one-page sites, profiles, landing pages, and small projects.",
+    price: "Free option",
+    url: "https://carrd.co/"
+  },
+  {
+    name: "WordPress.com",
+    cat: "Design & Creative",
+    needs: ["Websites","Blogging","Business","Creators"],
+    desc: "Hosted website and publishing platform for blogs, business sites, portfolios, and more.",
+    price: "Free option",
+    url: "https://wordpress.com/"
+  },
+  {
+    name: "Tally",
+    cat: "Business",
+    needs: ["Forms","Surveys","Business","No Code"],
+    desc: "Form builder for creating surveys, registrations, feedback forms, and other online forms.",
+    price: "Free option",
+    url: "https://tally.so/"
+  },
+  {
+    name: "Jotform",
+    cat: "Business",
+    needs: ["Forms","Surveys","Business","Automation"],
+    desc: "Online form builder for collecting information, payments, registrations, and workflow data.",
+    price: "Free option",
+    url: "https://www.jotform.com/"
+  },
+  {
+    name: "Zoho CRM",
+    cat: "Business",
+    needs: ["Business","CRM","Sales","Leads"],
+    desc: "Customer relationship management software for sales pipelines, leads, contacts, and customer operations.",
+    price: "View options",
+    url: "https://www.zoho.com/crm/"
+  },
+  {
+    name: "Wave",
+    cat: "Business",
+    needs: ["Business","Accounting","Invoices","Finance"],
+    desc: "Small-business accounting and invoicing platform with bookkeeping and payment tools.",
+    price: "View options",
+    url: "https://www.waveapps.com/"
+  },
+  {
+    name: "Printful",
+    cat: "Business",
+    needs: ["Ecommerce","Print on Demand","Selling","Creators"],
+    desc: "Print-on-demand platform for creating and fulfilling custom products for online stores.",
+    price: "View options",
+    url: "https://www.printful.com/"
+  },
+  {
+    name: "Printify",
+    cat: "Business",
+    needs: ["Ecommerce","Print on Demand","Selling","Creators"],
+    desc: "Print-on-demand platform connecting online sellers with print providers and product fulfillment.",
+    price: "Free option",
+    url: "https://printify.com/"
+  },
+  {
+    name: "Zendrop",
+    cat: "Business",
+    needs: ["Ecommerce","Dropshipping","Selling","Fulfillment"],
+    desc: "Dropshipping platform for product sourcing, fulfillment, and ecommerce operations.",
+    price: "View options",
+    url: "https://www.zendrop.com/"
+  },
+  {
+    name: "beehiiv",
+    cat: "Marketing",
+    needs: ["Marketing","Email","Newsletter","Creators"],
+    desc: "Newsletter platform for publishing, audience growth, analytics, and monetization.",
+    price: "Free option",
+    url: "https://www.beehiiv.com/"
+  },
+  {
+    name: "MailerLite",
+    cat: "Marketing",
+    needs: ["Marketing","Email","Newsletter","Automation"],
+    desc: "Email marketing platform for newsletters, automations, landing pages, and audience growth.",
+    price: "Free option",
+    url: "https://www.mailerlite.com/"
+  },
+  {
+    name: "Semrush",
+    cat: "Marketing",
+    needs: ["Marketing","SEO","Research","Business"],
+    desc: "Digital marketing platform for SEO, keyword research, competitive research, content, and advertising workflows.",
+    price: "View options",
+    url: "https://www.semrush.com/"
+  },
+  {
+    name: "Ahrefs",
+    cat: "Marketing",
+    needs: ["Marketing","SEO","Research","Keywords"],
+    desc: "SEO platform for keyword research, backlink analysis, site auditing, and competitive research.",
+    price: "View options",
+    url: "https://ahrefs.com/"
+  },
+  {
+    name: "Ubersuggest",
+    cat: "Marketing",
+    needs: ["Marketing","SEO","Keywords","Research"],
+    desc: "SEO and keyword research tool for content ideas, competitive analysis, and website optimization.",
+    price: "View options",
+    url: "https://neilpatel.com/ubersuggest/"
+  },
+  {
+    name: "Discord",
+    cat: "Communication",
+    needs: ["Communication","Community","Voice","Chat"],
+    desc: "Community communication platform with text, voice, video, servers, and group collaboration.",
+    price: "Free option",
+    url: "https://discord.com/"
+  },
+  {
+    name: "Proton Mail",
+    cat: "Communication",
+    needs: ["Email","Privacy","Communication","Security"],
+    desc: "Privacy-focused email service with encrypted mail and related productivity tools.",
+    price: "Free option",
+    url: "https://proton.me/mail"
+  },
+  {
+    name: "Google Drive",
+    cat: "Communication",
+    needs: ["Storage","Files","Documents","Collaboration"],
+    desc: "Cloud storage and file-sharing service for documents, photos, videos, and collaborative work.",
+    price: "Free option",
+    url: "https://drive.google.com/"
+  },
+  {
+    name: "OneDrive",
+    cat: "Communication",
+    needs: ["Storage","Files","Documents","Microsoft"],
+    desc: "Microsoft cloud storage service for files, backups, sharing, and collaboration.",
+    price: "Free option",
+    url: "https://www.microsoft.com/microsoft-365/onedrive/online-cloud-storage"
+  },
+  {
+    name: "Bitwarden",
+    cat: "Productivity",
+    needs: ["Security","Passwords","Privacy","Password Manager"],
+    desc: "Password manager for storing, generating, and securely sharing credentials across devices.",
+    price: "Free option",
+    url: "https://bitwarden.com/"
+  },
+  {
+    name: "1Password",
+    cat: "Productivity",
+    needs: ["Security","Passwords","Privacy","Password Manager"],
+    desc: "Password manager for individuals, families, and businesses to protect credentials and sensitive information.",
+    price: "View options",
+    url: "https://1password.com/"
+  },
+  {
+    name: "Proton VPN",
+    cat: "Productivity",
+    needs: ["Security","Privacy","VPN"],
+    desc: "Privacy-focused VPN service for securing internet connections and protecting browsing activity.",
+    price: "Free option",
+    url: "https://protonvpn.com/"
+  },
+  {
+    name: "NordVPN",
+    cat: "Productivity",
+    needs: ["Security","Privacy","VPN"],
+    desc: "VPN service with privacy, security, and encrypted internet connection features.",
+    price: "View options",
+    url: "https://nordvpn.com/"
+  },
+  {
+    name: "Cloudflare",
+    cat: "Developer",
+    needs: ["Developer","Security","Hosting","Websites","CDN"],
+    desc: "Web infrastructure platform for DNS, CDN, security, performance, and developer services.",
+    price: "Free option",
+    url: "https://www.cloudflare.com/"
+  },
+  {
+    name: "Replit",
+    cat: "Developer",
+    needs: ["Coding","Developer","AI","Hosting"],
+    desc: "Browser-based development platform for writing, running, collaborating on, and deploying software.",
+    price: "Free option",
+    url: "https://replit.com/"
+  },
+  {
+    name: "Cursor",
+    cat: "Developer",
+    needs: ["Coding","Developer","AI","Code Editor"],
+    desc: "AI-powered code editor designed to help developers write, understand, and modify software.",
+    price: "View options",
+    url: "https://www.cursor.com/"
+  },
+  {
+    name: "GitHub Copilot",
+    cat: "Developer",
+    needs: ["Coding","Developer","AI","Programming"],
+    desc: "AI coding assistant integrated with developer workflows and code editors.",
+    price: "View options",
+    url: "https://github.com/features/copilot"
+  },
+  {
+    name: "Docker",
+    cat: "Developer",
+    needs: ["Coding","Developer","Containers","DevOps"],
+    desc: "Platform for building, packaging, and running applications in containers.",
+    price: "Free option",
+    url: "https://www.docker.com/"
+  },
+  {
+    name: "Postman",
+    cat: "Developer",
+    needs: ["Coding","Developer","API","Testing"],
+    desc: "API platform for designing, testing, documenting, and collaborating on APIs.",
+    price: "Free option",
+    url: "https://www.postman.com/"
+  },
+  {
+    name: "Netlify",
+    cat: "Developer",
+    needs: ["Coding","Developer","Hosting","Websites"],
+    desc: "Cloud platform for deploying and hosting web projects with developer-focused workflows.",
+    price: "Free option",
+    url: "https://www.netlify.com/"
+  },
+  {
+    name: "Supabase",
+    cat: "Developer",
+    needs: ["Coding","Developer","Database","Backend"],
+    desc: "Open-source development platform with database, authentication, storage, and backend services.",
+    price: "Free option",
+    url: "https://supabase.com/"
+  },
+  {
+    name: "LanguageTool",
+    cat: "Writing",
+    needs: ["Writing","Grammar","Spelling","Languages"],
+    desc: "Writing assistant for grammar, spelling, punctuation, and style across multiple languages.",
+    price: "Free option",
+    url: "https://languagetool.org/"
+  }
+
 ];
 
 const grid = document.querySelector("#toolGrid");
@@ -571,7 +966,6 @@ const searchIntents = {
   sales: ["sales", "sell", "selling", "crm", "customers", "leads"],
   ecommerce: ["ecommerce", "e-commerce", "online store", "store", "shop", "sell online"],
   accounting: ["accounting", "bookkeeping", "invoice", "invoicing", "expenses", "finance"],
-  forms: ["form", "forms", "survey", "surveys", "quiz", "feedback"],
   communication: ["communicate", "communication", "chat", "message", "team communication"],
   meetings: ["meeting", "meetings", "video call", "conference"],
   storage: ["storage", "cloud storage", "files", "file sharing", "share files"],
@@ -582,6 +976,11 @@ const searchIntents = {
   photos: ["photo", "photos", "photography", "stock photo", "images"],
   ui: ["ui", "ux", "prototype", "wireframe", "interface design"],
   hosting: ["hosting", "deploy", "deployment", "host website"],
+  seo: ["seo", "search engine optimization", "keyword", "keywords", "backlinks"],
+  security: ["security", "privacy", "password", "passwords", "vpn", "protect"],
+  transcription: ["transcription", "transcribe", "meeting notes", "speech to text"],
+  streaming: ["stream", "streaming", "live stream", "record screen"],
+  forms: ["form", "forms", "survey", "surveys", "quiz", "feedback"],
   modding: ["mod", "mods", "modding", "game mod", "game mods", "game modding", "mod a game", "mod pc game", "minecraft mod", "terraria mod", "gta mod"]
 };
 
@@ -589,7 +988,15 @@ const searchIntents = {
 // perform the requested job, rather than merely mentioning a related word.
 const taskRules = [
   { phrases: ["logo", "branding", "make a logo", "create a logo"], names: ["Canva", "Adobe Express", "Figma"], bonus: 45 },
-  { phrases: ["edit video", "video editor", "video editing"], names: ["Descript", "Adobe Express", "Canva"], bonus: 50 },
+  { phrases: ["edit video", "video editor", "video editing"], names: ["DaVinci Resolve", "CapCut", "Descript", "Adobe Express", "Canva"], bonus: 50 },
+  { phrases: ["remove background", "remove image background", "background remover"], names: ["remove.bg", "Photopea", "Adobe Express", "Canva"], bonus: 55 },
+  { phrases: ["seo", "keyword research", "find keywords", "backlinks"], names: ["Semrush", "Ahrefs", "Ubersuggest"], bonus: 50 },
+  { phrases: ["password manager", "save passwords", "protect passwords"], names: ["Bitwarden", "1Password"], bonus: 55 },
+  { phrases: ["vpn", "private browsing", "protect my connection"], names: ["Proton VPN", "NordVPN"], bonus: 50 },
+  { phrases: ["transcribe", "transcription", "meeting notes"], names: ["Otter.ai", "Descript"], bonus: 50 },
+  { phrases: ["live stream", "streaming", "record my screen"], names: ["OBS Studio", "Loom"], bonus: 50 },
+  { phrases: ["print on demand", "sell shirts", "custom products"], names: ["Printful", "Printify"], bonus: 50 },
+  { phrases: ["dropshipping", "drop shipping"], names: ["Zendrop", "Shopify"], bonus: 50 },
   { phrases: ["build a website", "make a website", "website without coding", "website no code", "no code website", "landing page"], names: ["Webflow", "Wix", "Squarespace", "Systeme.io"], bonus: 50 },
   { phrases: ["grammar", "proofread", "fix my writing", "improve my writing", "write better"], names: ["Grammarly", "ChatGPT", "Claude"], bonus: 45 },
   { phrases: ["homework", "study", "studying", "school help"], names: ["Khan Academy", "Quizlet", "ChatGPT", "Wolfram Alpha"], bonus: 40 },
