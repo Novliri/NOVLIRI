@@ -10,7 +10,15 @@ if (!tool) {
   detail.hidden = false;
   document.title = `${tool.name} — What it does | NOVLIRI`;
   const meta = document.querySelector('meta[name="description"]');
-  if (meta) meta.content = `Discover ${tool.name} on NOVLIRI. ${tool.desc}`;
+  const description = `Discover ${tool.name} on NOVLIRI. ${tool.desc}`;
+  if (meta) meta.content = description;
+  const canonicalUrl = `https://novliri.com/tool.html?tool=${encodeURIComponent(tool.name)}`;
+  document.querySelector("#canonicalLink")?.setAttribute("href", canonicalUrl);
+  document.querySelector("#ogTitle")?.setAttribute("content", document.title);
+  document.querySelector("#ogDescription")?.setAttribute("content", description);
+  document.querySelector("#ogUrl")?.setAttribute("content", canonicalUrl);
+  document.querySelector("#twitterTitle")?.setAttribute("content", document.title);
+  document.querySelector("#twitterDescription")?.setAttribute("content", description);
   document.querySelector("#detailCategory").textContent = tool.cat;
   document.querySelector("#detailName").textContent = tool.name;
   document.querySelector("#detailDescription").textContent = tool.desc;
@@ -32,4 +40,17 @@ if (!tool) {
     notice.textContent = `Third-party project by ${tool.creator || "its respective creator"}. NOVLIRI does not own, operate, or endorse this project. Names and trademarks belong to their respective owners.`;
   }
   if (tool.affiliate) document.querySelector("#affiliateNotice").hidden = false;
+
+  const schema = document.createElement("script");
+  schema.type = "application/ld+json";
+  schema.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: tool.name,
+    description: tool.desc,
+    applicationCategory: tool.cat,
+    url: canonicalUrl,
+    sameAs: tool.url
+  });
+  document.head.appendChild(schema);
 }
