@@ -79,6 +79,24 @@ function createToolCard(tool) {
   return article;
 }
 
+// Homepage Trending Tools. These are a curated snapshot of tools with strong
+// current public search interest; keep the list easy to update as trends change.
+const trendingToolGrid = document.querySelector("#trendingToolGrid");
+const trendingToolNames = ["ChatGPT", "Canva", "Gemini", "Claude", "Grammarly", "CapCut"];
+
+function renderTrendingTools() {
+  if (!trendingToolGrid) return;
+  const fragment = document.createDocumentFragment();
+  trendingToolNames.forEach(name => {
+    const tool = tools.find(item => item.name === name);
+    if (!tool) return;
+    const card = createToolCard(tool);
+    card.classList.add("trending-tool-card");
+    fragment.appendChild(card);
+  });
+  trendingToolGrid.replaceChildren(fragment);
+}
+
 // Natural-language search vocabulary. Visitors can search by what they
 // want to accomplish instead of needing to know a product name.
 const searchIntents = {
@@ -368,6 +386,7 @@ document.querySelectorAll("[data-search-suggestion]").forEach(button => {
 });
 
 render();
+renderTrendingTools();
 
 
 /* =========================================================
