@@ -1743,3 +1743,9 @@ footer {
 @media(max-width:1200px){.trending-tool-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:700px){.trending-tools-section{margin-top:36px}.trending-tool-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:460px){.trending-tool-grid{grid-template-columns:1fr}}
+
+
+/* Recognizable product logos */
+.tool-icon img{display:block;width:24px;height:24px;object-fit:contain}
+.trending-tool-card .tool-icon{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
+.trending-tool-card .tool-icon img{width:25px;height:25px}
