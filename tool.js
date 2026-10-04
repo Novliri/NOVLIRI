@@ -1,4 +1,4 @@
-const directory = window.NOVLIRI_TOOLS || [];
+const directory = globalThis.NOVLIRI_TOOLS || [];
 const params = new URLSearchParams(window.location.search);
 const requested = (params.get("tool") || "").trim().toLowerCase();
 const tool = directory.find(item => item.name.toLowerCase() === requested);
