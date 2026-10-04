@@ -1722,3 +1722,10 @@ footer {
 @media(max-width:1100px){.discover-categories{grid-template-columns:repeat(5,1fr)}.tool-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:760px){.site-header{width:calc(100% - 24px)}.discover-hero{padding:38px 15px 24px}.discover-search-button{min-width:auto;padding:10px 16px}.search-suggestions span{width:100%}.discover-categories{grid-template-columns:repeat(3,1fr);padding:0 14px}.tool-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.discover-categories{grid-template-columns:repeat(2,1fr)}.tool-grid{grid-template-columns:1fr}.discover-search{padding-left:13px}.discover-search-button{font-size:11px}.site-header .submit-tool-button{padding:8px 11px;font-size:10px}}
+
+/* NOVLIRI ribbon brand mark */
+.brand-ribbon{width:42px;height:42px;border-radius:0;background:transparent;box-shadow:none;overflow:visible;filter:drop-shadow(0 0 8px rgba(57,108,255,.28)) drop-shadow(0 0 10px rgba(240,59,215,.16))}
+.brand-ribbon::after{display:none}
+.brand-ribbon svg{display:block;width:100%;height:100%;overflow:visible}
+.footer-brand .brand-ribbon{width:34px;height:34px;border-radius:0;font-size:0}
+@media(max-width:600px){.brand-ribbon{width:36px;height:36px}}
