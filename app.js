@@ -347,12 +347,16 @@ sort.addEventListener("change", render);
 
 document.querySelectorAll(".category").forEach(button => {
   button.addEventListener("click", () => {
-    search.value = button.dataset.category;
+    search.value = button.dataset.category || "";
     render();
+    document.querySelector("#tools").scrollIntoView({ behavior: "smooth" });
+  });
+});
 
-    document.querySelector("#tools").scrollIntoView({
-      behavior: "smooth"
-    });
+document.querySelectorAll("[data-search-suggestion]").forEach(button => {
+  button.addEventListener("click", () => {
+    search.value = button.dataset.searchSuggestion || "";
+    showSearchResults();
   });
 });
 
