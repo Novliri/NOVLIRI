@@ -13,12 +13,12 @@ function toolSlug(name) {
 }
 
 const toolLogos = {
-  "ChatGPT": "https://cdn.simpleicons.org/openai/ffffff",
-  "Canva": "https://cdn.simpleicons.org/canva",
-  "Gemini": "https://cdn.simpleicons.org/googlegemini",
-  "Claude": "https://cdn.simpleicons.org/claude",
-  "Grammarly": "https://cdn.simpleicons.org/grammarly",
-  "CapCut": "https://cdn.simpleicons.org/capcut/ffffff"
+  "ChatGPT": "assets/tool-logos/chatgpt.svg",
+  "Canva": "assets/tool-logos/canva.svg",
+  "Gemini": "assets/tool-logos/gemini.svg",
+  "Claude": "assets/tool-logos/claude.svg",
+  "Grammarly": "assets/tool-logos/grammarly.svg",
+  "CapCut": "assets/tool-logos/capcut.svg"
 };
 
 function createToolCard(tool) {
