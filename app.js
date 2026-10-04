@@ -473,7 +473,7 @@ const tools = [
     desc: "Writing assistance for grammar, clarity, tone, and communication.",
     price: "View options",
     url: "https://www.grammarly.com/"
-  }
+  },
 
   // DIRECTORY EXPANSION
   {
