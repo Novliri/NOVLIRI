@@ -38,17 +38,15 @@
   </a>
 
 <nav>
-  <a href="#tools">Explore</a>
+  <a href="#discover">Discover</a>
   <a href="#categories">Categories</a>
-  <a href="#how">How it works</a>
-  <a href="#news">News</a>
   <a href="learn.html">Learn</a>
   <a href="about.html">About</a>
 </nav>
   
   
-  <a class="button small" href="#tools">
-    Explore tools →
+  <a class="button small submit-tool-button" href="about.html">
+    Submit a Tool →
   </a>
 
 </header>
@@ -59,349 +57,41 @@
   
 <!-- HERO -->
 
-<section class="hero">
-
-  <div class="hero-badge">
-    <span class="pulse"></span>
-    CURATED SOFTWARE DISCOVERY
-  </div>
-
-  <h1>
-    Discover <span class="gradient-text">better</span><br>
-    software.
-  </h1>
-
-  <h2 class="hero-subtitle">
-    Build smarter.
-  </h2>
-
-  <p>
-    Cut through the noise. Discover useful AI tools,
-    productivity apps, business software, education platforms,
-    creative tools, and more — organized around what you need.
-  </p>
-
-  <div class="hero-actions">
-
-    <a class="button primary" href="#tools">
-      Explore tools
-      <span>→</span>
-    </a>
-
-    <a class="button ghost" href="#categories">
-      Browse categories
-    </a>
-
-  </div>
-
-
-  <!-- SEARCH -->
-
-  <div class="search-wrap">
-
+<section id="discover" class="hero discover-hero">
+  <h1>Find the right software for <span class="gradient-text">anything.</span></h1>
+  <p class="discover-subtitle">Discover useful tools for your ideas, work, and everyday tasks.</p>
+  <div class="search-wrap discover-search">
     <span class="search-icon">⌕</span>
-
-    <input
-      id="search"
-      type="search"
-      placeholder="Search tools, categories, or use cases…"
-      autocomplete="off"
-    >
-
-    <button class="search-hint" id="searchButton" type="button">
-      Search
-    </button>
-
+    <input id="search" type="search" placeholder="What do you need help with?" autocomplete="off">
+    <button class="search-hint discover-search-button" id="searchButton" type="button">Search</button>
   </div>
-
-</section>
-
-
-
-<!-- STATS -->
-
-<section class="stats">
-
-  <div>
-    <strong id="toolCount">51</strong>
-    <span>Software tools</span>
+  <div class="search-suggestions" aria-label="Popular searches">
+    <span>Try searching:</span>
+    <button type="button" data-search-suggestion="edit a PDF">Edit a PDF</button>
+    <button type="button" data-search-suggestion="build a website">Build a website</button>
+    <button type="button" data-search-suggestion="make a logo">Make a logo</button>
+    <button type="button" data-search-suggestion="video editor">Video editor</button>
+    <button type="button" data-search-suggestion="study">Study</button>
+    <button type="button" data-search-suggestion="automate work">Automate work</button>
   </div>
-
-  <div>
-    <strong>8</strong>
-    <span>Need categories</span>
-  </div>
-
-  <div>
-    <strong>Curated</strong>
-    <span>Software directory</span>
-  </div>
-
 </section>
 
 
 
 <!-- CATEGORIES -->
 
-<section id="categories" class="section">
-
-  <div class="section-heading">
-
-    <div>
-
-      <div class="eyebrow">
-        BROWSE BY NEED
-      </div>
-
-      <h2>
-        What do you need?
-      </h2>
-
-      <p class="section-description">
-        Start with what you're trying to accomplish
-        and discover software built for the job.
-      </p>
-
-    </div>
-
-    <a class="section-link" href="#tools">
-      View all tools →
-    </a>
-
-  </div>
-
-
-  <div class="category-grid">
-
-
-    <!-- AI -->
-
-    <button
-      class="category category-ai"
-      data-category="AI"
-    >
-
-      <span class="category-icon">
-        ✦
-      </span>
-
-      <div>
-        <b>AI & Automation</b>
-
-        <small>
-          AI assistants, research, writing,
-          and automation.
-        </small>
-      </div>
-
-      <span class="category-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-
-    <!-- EDUCATION -->
-
-    <button
-      class="category category-education"
-      data-category="Education"
-    >
-
-      <span class="category-icon">
-        ◎
-      </span>
-
-      <div>
-        <b>Education & Learning</b>
-
-        <small>
-          Studying, research, courses,
-          math, and learning.
-        </small>
-      </div>
-
-      <span class="category-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-
-    <!-- BUSINESS -->
-
-    <button
-      class="category category-business"
-      data-category="Business"
-    >
-
-      <span class="category-icon">
-        ↗
-      </span>
-
-      <div>
-        <b>Business & Sales</b>
-
-        <small>
-          CRM, accounting, ecommerce,
-          sales, and operations.
-        </small>
-      </div>
-
-      <span class="category-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-
-    <!-- PRODUCTIVITY -->
-
-    <button
-      class="category category-productivity"
-      data-category="Productivity"
-    >
-
-      <span class="category-icon">
-        ✓
-      </span>
-
-      <div>
-        <b>Productivity</b>
-
-        <small>
-          Tasks, projects, scheduling,
-          notes, and organization.
-        </small>
-      </div>
-
-      <span class="category-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-
-    <!-- MARKETING -->
-
-    <button
-      class="category category-marketing"
-      data-category="Marketing"
-    >
-
-      <span class="category-icon">
-        ◇
-      </span>
-
-      <div>
-        <b>Marketing & Social</b>
-
-        <small>
-          Email, social media, content,
-          and audience growth.
-        </small>
-      </div>
-
-      <span class="category-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-
-    <!-- DESIGN -->
-
-    <button
-      class="category category-design"
-      data-category="Design"
-    >
-
-      <span class="category-icon">
-        ◈
-      </span>
-
-      <div>
-        <b>Design & Creative</b>
-
-        <small>
-          Graphics, websites, video,
-          photography, and UI design.
-        </small>
-      </div>
-
-      <span class="category-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-
-    <!-- COMMUNICATION -->
-
-    <button
-      class="category category-communication"
-      data-category="Communication"
-    >
-
-      <span class="category-icon">
-        ◌
-      </span>
-
-      <div>
-        <b>Communication</b>
-
-        <small>
-          Meetings, messaging, collaboration,
-          and file sharing.
-        </small>
-      </div>
-
-      <span class="category-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-
-    <!-- DEVELOPER -->
-
-    <button
-      class="category category-developer"
-      data-category="Developer"
-    >
-
-      <span class="category-icon">
-        &lt;/&gt;
-      </span>
-
-      <div>
-        <b>Developer Tools</b>
-
-        <small>
-          Coding, repositories, deployment,
-          and development.
-        </small>
-      </div>
-
-      <span class="category-arrow">
-        ↗
-      </span>
-
-    </button>
-
-
-  </div>
-
+<section id="categories" class="discover-categories" aria-label="Browse software categories">
+  <button class="category category-all" data-category=""><span class="category-icon">✦</span><b>All Tools</b></button>
+  <button class="category category-ai" data-category="AI"><span class="category-icon">✧</span><b>AI</b></button>
+  <button class="category category-productivity" data-category="Productivity"><span class="category-icon">✓</span><b>Productivity</b></button>
+  <button class="category category-design" data-category="Design"><span class="category-icon">◉</span><b>Design</b></button>
+  <button class="category category-video" data-category="Video"><span class="category-icon">▻</span><b>Video & Audio</b></button>
+  <button class="category category-business" data-category="Business"><span class="category-icon">▥</span><b>Business</b></button>
+  <button class="category category-developer" data-category="Developer"><span class="category-icon">&lt;/&gt;</span><b>Developer</b></button>
+  <button class="category category-education" data-category="Education"><span class="category-icon">◇</span><b>Education</b></button>
+  <button class="category category-marketing" data-category="Marketing"><span class="category-icon">⌁</span><b>Marketing</b></button>
+  <button class="category category-writing" data-category="Writing"><span class="category-icon">✎</span><b>Writing</b></button>
 </section>
-
-
 
 <!-- TOOL DIRECTORY -->
 
