@@ -7,6 +7,10 @@ const toolCount = document.querySelector("#toolCount");
 
 toolCount.textContent = tools.length;
 
+function toolSlug(name) {
+  return name.toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
 function createToolCard(tool) {
   const article = document.createElement("article");
   article.className = "tool-card";
@@ -26,7 +30,7 @@ function createToolCard(tool) {
 
   const heading = document.createElement("h3");
   const detailLink = document.createElement("a");
-  detailLink.href = `tool.html?tool=${encodeURIComponent(tool.name)}`;
+  detailLink.href = `tools/${toolSlug(tool.name)}/`;
   detailLink.textContent = tool.name;
   detailLink.setAttribute("aria-label", `Learn more about ${tool.name}`);
   heading.appendChild(detailLink);
