@@ -1,4 +1,4 @@
-window.NOVLIRI_TOOLS = [
+globalThis.NOVLIRI_TOOLS = [
   // AI & AUTOMATION
   {
     name: "ChatGPT",
