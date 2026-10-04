@@ -4,6 +4,7 @@ const search = document.querySelector("#search");
 const sort = document.querySelector("#sort");
 const empty = document.querySelector("#empty");
 const toolCount = document.querySelector("#toolCount");
+let searchSubmitted = false;
 
 if (toolCount) toolCount.textContent = tools.length;
 
@@ -268,7 +269,8 @@ function scoreTool(tool, query) {
 }
 
 function render() {
-  const q = (search.value || "").trim();
+  const rawQuery = (search.value || "").trim();
+  const q = searchSubmitted ? rawQuery : "";
   const toolsHeading = document.querySelector("#toolsHeading");
   const toolsDescription = document.querySelector("#toolsDescription");
 
@@ -320,6 +322,7 @@ function render() {
   }
 }
 function showSearchResults() {
+  searchSubmitted = true;
   render();
 
   if ((search.value || "").trim()) {
@@ -330,9 +333,12 @@ function showSearchResults() {
   }
 }
 
-// Keep results updating while the visitor types, but do not move the page
-// until they explicitly submit the search.
-search.addEventListener("input", render);
+// Typing should not replace the directory with an error state. Results are
+// evaluated only after the visitor explicitly submits the search.
+search.addEventListener("input", () => {
+  searchSubmitted = false;
+  render();
+});
 
 search.addEventListener("keydown", event => {
   if (event.key === "Enter") {
@@ -348,6 +354,7 @@ sort.addEventListener("change", render);
 document.querySelectorAll(".category").forEach(button => {
   button.addEventListener("click", () => {
     search.value = button.dataset.category || "";
+    searchSubmitted = true;
     render();
     document.querySelector("#tools").scrollIntoView({ behavior: "smooth" });
   });
