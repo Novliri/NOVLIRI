@@ -1133,6 +1133,8 @@ function scoreTool(tool, query) {
 
 function render() {
   const q = (search.value || "").trim();
+  const toolsHeading = document.querySelector("#toolsHeading");
+  const toolsDescription = document.querySelector("#toolsDescription");
 
   let list;
 
@@ -1167,6 +1169,19 @@ function render() {
 
   grid.replaceChildren(fragment);
   empty.hidden = list.length > 0;
+
+  if (toolsHeading && toolsDescription) {
+    if (q && list.length > 0) {
+      toolsHeading.textContent = `Best matches for “${q}”`;
+      toolsDescription.textContent = `${list.length} ${list.length === 1 ? "tool" : "tools"} ranked by how closely they match what you’re looking for.`;
+    } else if (q) {
+      toolsHeading.textContent = "We couldn’t find a strong match.";
+      toolsDescription.textContent = `No strong matches for “${q}”. Try a tool name, category, or describe what you want to do.`;
+    } else {
+      toolsHeading.textContent = "Tools worth discovering.";
+      toolsDescription.textContent = "Explore software for work, school, business, creativity, communication, development, and everyday productivity.";
+    }
+  }
 }
 function showSearchResults() {
   render();
