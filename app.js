@@ -12,6 +12,15 @@ function toolSlug(name) {
   return name.toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
+const toolLogos = {
+  "ChatGPT": "https://cdn.simpleicons.org/openai/ffffff",
+  "Canva": "https://cdn.simpleicons.org/canva",
+  "Gemini": "https://cdn.simpleicons.org/googlegemini",
+  "Claude": "https://cdn.simpleicons.org/claude",
+  "Grammarly": "https://cdn.simpleicons.org/grammarly",
+  "CapCut": "https://cdn.simpleicons.org/capcut/ffffff"
+};
+
 function createToolCard(tool) {
   const article = document.createElement("article");
   article.className = "tool-card";
@@ -21,7 +30,22 @@ function createToolCard(tool) {
 
   const icon = document.createElement("div");
   icon.className = "tool-icon";
-  icon.textContent = tool.name.slice(0, 1);
+  const logoUrl = toolLogos[tool.name];
+  if (logoUrl) {
+    const logo = document.createElement("img");
+    logo.src = logoUrl;
+    logo.alt = "";
+    logo.loading = "lazy";
+    logo.decoding = "async";
+    logo.referrerPolicy = "no-referrer";
+    logo.addEventListener("error", () => {
+      icon.replaceChildren();
+      icon.textContent = tool.name.slice(0, 1);
+    }, { once: true });
+    icon.appendChild(logo);
+  } else {
+    icon.textContent = tool.name.slice(0, 1);
+  }
 
   const tag = document.createElement("span");
   tag.className = "tag";
