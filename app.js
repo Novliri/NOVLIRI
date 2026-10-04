@@ -5,7 +5,7 @@ const sort = document.querySelector("#sort");
 const empty = document.querySelector("#empty");
 const toolCount = document.querySelector("#toolCount");
 
-toolCount.textContent = tools.length;
+if (toolCount) toolCount.textContent = tools.length;
 
 function toolSlug(name) {
   return name.toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
