@@ -464,7 +464,7 @@ async function loadHomeNews() {
   }
 
   try {
-    const response = await fetch("news.json", {
+    const response = await fetch("news.json?v=20261004-2", {
       cache: "no-store"
     });
 
