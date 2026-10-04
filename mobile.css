@@ -1,0 +1,151 @@
+/* NOVLIRI mobile-first refinements */
+@media (max-width: 600px) {
+  html { -webkit-text-size-adjust: 100%; }
+  body { width: 100%; overflow-x: hidden; }
+
+  .site-header {
+    width: calc(100% - 24px);
+    height: 64px;
+    gap: 10px;
+  }
+  .brand { gap: 8px; font-size: 15px; flex-shrink: 0; }
+  .brand-mark { width: 30px; height: 30px; }
+  .site-header .button.small {
+    min-height: 40px;
+    padding: 8px 10px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .hero {
+    width: 100%;
+    padding: 58px 16px 58px;
+  }
+  .hero::before { width: 100%; max-width: 420px; }
+  .hero h1 {
+    font-size: clamp(42px, 13vw, 60px);
+    line-height: .98;
+    letter-spacing: -.055em;
+    overflow-wrap: anywhere;
+  }
+  .discover-subtitle,
+  .hero > p {
+    max-width: 34rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .search-wrap {
+    width: 100%;
+    margin-top: 30px;
+    padding: 5px 6px 5px 12px;
+    border-radius: 14px;
+  }
+  .search-icon { font-size: 21px; }
+  .search-wrap input {
+    width: 100%;
+    min-width: 0;
+    padding: 13px 9px;
+    font-size: 16px; /* prevents iOS input zoom */
+  }
+  .discover-search-button,
+  .search-hint {
+    display: inline-flex;
+    min-width: 68px;
+    min-height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 10px;
+    border: 1px solid rgba(139,92,246,.35);
+    color: #fff;
+    background: linear-gradient(135deg,#8b5cf6,#3b82f6);
+    cursor: pointer;
+  }
+
+  .hero-actions { gap: 12px; }
+  .button { min-height: 44px; }
+
+  .stats {
+    width: calc(100% - 24px);
+    margin: 0 auto;
+    grid-template-columns: 1fr;
+  }
+  .stats div {
+    padding: 16px 12px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .stats div:last-child { border-bottom: 0; }
+
+  .section {
+    width: 100%;
+    margin: 64px auto;
+    padding: 0 14px;
+  }
+  .section-heading { gap: 12px; margin-bottom: 22px; }
+  .section h2, .cta h2 { font-size: clamp(29px, 9vw, 36px); }
+  .section-description { font-size: 14px; line-height: 1.55; }
+
+  .category-grid,
+  .tool-grid,
+  .steps,
+  .news-grid {
+    grid-template-columns: minmax(0,1fr) !important;
+  }
+  .category,
+  .tool-card,
+  .news-card { width: 100%; min-width: 0; }
+  .category { min-height: 145px; padding: 19px; }
+  .category-icon { margin-bottom: 20px; }
+  .tool-card { padding: 18px; }
+  .tool-bottom { gap: 12px; flex-wrap: wrap; }
+
+  .how {
+    width: calc(100% - 28px);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 24px 17px;
+  }
+  .steps article { padding: 21px; }
+
+  .cta {
+    width: 100%;
+    margin: 70px auto;
+    padding: 55px 17px;
+  }
+
+  footer {
+    width: calc(100% - 28px);
+    padding-bottom: 28px;
+  }
+  .footer-links { gap: 14px 18px; }
+
+  .page {
+    width: 100%;
+    margin: 55px auto;
+    padding: 0 17px;
+  }
+  .page h1 { font-size: clamp(38px, 12vw, 52px); }
+
+  .learn-hero { padding: 4.5rem 17px 2.5rem; }
+  .learn-feed { padding-left: 14px; padding-right: 14px; }
+  .news-categories {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+  .news-categories::-webkit-scrollbar { display: none; }
+  .news-filter { flex: 0 0 auto; min-height: 42px; }
+
+  img, svg, video, iframe { max-width: 100%; }
+}
+
+@media (max-width: 380px) {
+  .site-header .submit-tool-button { padding: 7px 8px; font-size: 9px; }
+  .hero { padding-left: 13px; padding-right: 13px; }
+  .hero h1 { font-size: 40px; }
+}
