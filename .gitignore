@@ -1,0 +1,34 @@
+# NOVLIRI — local/private files that must never be committed
+
+# Environment variables and local secrets
+.env
+.env.*
+!.env.example
+*.env
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local credentials / service-account files
+credentials.json
+service-account*.json
+secrets.json
+*.secret
+
+# Package/dependency and build artifacts
+node_modules/
+vendor/
+dist/
+build/
+coverage/
+.nyc_output/
+
+# Local tooling/cache
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+*.tmp
+.cache/
