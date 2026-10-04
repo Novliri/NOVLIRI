@@ -21,6 +21,16 @@ const toolLogos = {
   "CapCut": "assets/tool-logos/capcut.svg"
 };
 
+function toolLogoUrl(tool) {
+  if (toolLogos[tool.name]) return toolLogos[tool.name];
+  try {
+    const destination = new URL(tool.url);
+    return destination.origin + "/favicon.ico";
+  } catch {
+    return null;
+  }
+}
+
 function createToolCard(tool) {
   const article = document.createElement("article");
   article.className = "tool-card";
@@ -30,7 +40,7 @@ function createToolCard(tool) {
 
   const icon = document.createElement("div");
   icon.className = "tool-icon";
-  const logoUrl = toolLogos[tool.name];
+  const logoUrl = toolLogoUrl(tool);
   if (logoUrl) {
     const logo = document.createElement("img");
     logo.src = logoUrl;
