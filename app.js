@@ -109,9 +109,36 @@ function toolLogoUrl(tool) {
   }
 }
 
+const bestFor = {
+  "ChatGPT":"General-purpose AI", "Canva":"Easy visual design", "Gemini":"Google-powered AI", "Claude":"Writing & analysis", "Grammarly":"Writing improvement", "CapCut":"Quick video editing",
+  "Zapier":"App automation", "Make":"Visual automation", "Notion":"Notes & workspaces", "Figma":"UI & product design", "Photopea":"Free browser photo editing", "Adobe Express":"Quick branded content",
+  "Khan Academy":"Free learning", "Quizlet":"Study & flashcards", "HubSpot":"CRM & marketing", "Shopify":"Online stores", "GitHub":"Code collaboration", "Visual Studio Code":"Code editing",
+  "Semrush":"SEO research", "Discord":"Communities & chat", "Bitwarden":"Password management", "Proton VPN":"Private browsing", "OBS Studio":"Streaming & recording", "DaVinci Resolve":"Advanced video editing"
+};
+
+function bestForText(tool) {
+  if (bestFor[tool.name]) return bestFor[tool.name];
+  const need = Array.isArray(tool.needs) && tool.needs.length ? tool.needs[0] : tool.cat;
+  return need ? String(need).replace(/\b\w/g, char => char.toUpperCase()) : tool.cat;
+}
+
 function createToolCard(tool) {
   const article = document.createElement("article");
   article.className = "tool-card";
+  const detailHref = `tools/${toolSlug(tool.name)}/`;
+  article.tabIndex = 0;
+  article.setAttribute("role", "link");
+  article.setAttribute("aria-label", `View ${tool.name} details`);
+  const openDetails = () => { window.location.href = detailHref; };
+  article.addEventListener("click", event => {
+    if (!event.target.closest("a, button")) openDetails();
+  });
+  article.addEventListener("keydown", event => {
+    if ((event.key === "Enter" || event.key === " ") && !event.target.closest("a, button")) {
+      event.preventDefault();
+      openDetails();
+    }
+  });
 
   const top = document.createElement("div");
   top.className = "tool-top";
@@ -143,7 +170,7 @@ function createToolCard(tool) {
 
   const heading = document.createElement("h3");
   const detailLink = document.createElement("a");
-  detailLink.href = `tools/${toolSlug(tool.name)}/`;
+  detailLink.href = detailHref;
   detailLink.textContent = tool.name;
   detailLink.setAttribute("aria-label", `Learn more about ${tool.name}`);
   heading.appendChild(detailLink);
@@ -151,14 +178,28 @@ function createToolCard(tool) {
   const description = document.createElement("p");
   description.textContent = tool.desc;
 
+  const best = document.createElement("p");
+  best.className = "tool-best-for";
+  const bestLabel = document.createElement("strong");
+  bestLabel.textContent = "Best for: ";
+  best.append(bestLabel, document.createTextNode(bestForText(tool)));
+
   const bottom = document.createElement("div");
   bottom.className = "tool-bottom";
 
   const price = document.createElement("span");
   price.textContent = tool.price;
 
+  const actions = document.createElement("span");
+  actions.className = "tool-actions";
+  const details = document.createElement("a");
+  details.className = "tool-details-link";
+  details.href = detailHref;
+  details.textContent = "View details →";
+
   const link = document.createElement("a");
-  link.textContent = "Visit ↗";
+  link.className = "tool-visit-link";
+  link.textContent = "Visit site ↗";
   link.target = "_blank";
   link.rel = tool.affiliate ? "noopener sponsored" : "noopener";
 
@@ -175,8 +216,9 @@ function createToolCard(tool) {
     link.setAttribute("aria-disabled", "true");
   }
 
-  bottom.append(price, link);
-  article.append(top, heading, description);
+  actions.append(details, link);
+  bottom.append(price, actions);
+  article.append(top, heading, description, best);
 
   if (tool.thirdParty) {
     const notice = document.createElement("p");
@@ -207,6 +249,31 @@ function renderTrendingTools() {
     fragment.appendChild(card);
   });
   trendingToolGrid.replaceChildren(fragment);
+}
+
+function showAllTools() {
+  search.value = "";
+  searchSubmitted = false;
+  sort.value = "featured";
+  render();
+  document.querySelector("#tools")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+document.querySelector("#viewAllTrending")?.addEventListener("click", showAllTools);
+
+const editorPickNames = ["Canva", "ChatGPT", "Zapier", "Photopea", "DaVinci Resolve", "Bitwarden"];
+function renderEditorPicks() {
+  const pickGrid = document.querySelector("#editorPickGrid");
+  if (!pickGrid) return;
+  const fragment = document.createDocumentFragment();
+  editorPickNames.forEach(name => {
+    const tool = tools.find(item => item.name === name);
+    if (!tool) return;
+    const card = createToolCard(tool);
+    card.classList.add("editor-pick-card");
+    fragment.appendChild(card);
+  });
+  pickGrid.replaceChildren(fragment);
 }
 
 // Natural-language search vocabulary. Visitors can search by what they
@@ -499,6 +566,7 @@ document.querySelectorAll("[data-search-suggestion]").forEach(button => {
 
 render();
 renderTrendingTools();
+renderEditorPicks();
 
 
 /* =========================================================

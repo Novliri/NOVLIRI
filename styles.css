@@ -1749,3 +1749,21 @@ footer {
 .tool-icon img{display:block;width:24px;height:24px;object-fit:contain}
 .trending-tool-card .tool-icon{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
 .trending-tool-card .tool-icon img{width:25px;height:25px}
+
+
+/* Click and discovery optimization */
+.tool-card{cursor:pointer}
+.tool-card:focus-visible{outline:2px solid rgba(86,155,255,.9);outline-offset:3px}
+.tool-best-for{margin:8px 0 2px!important;font-size:12px!important;color:rgba(255,255,255,.68)!important}
+.tool-best-for strong{color:rgba(255,255,255,.9)}
+.tool-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+.tool-details-link{font-weight:750;color:#a9c7ff!important}
+.tool-visit-link{font-weight:750}
+.section-footer-action{display:flex;justify-content:center;margin-top:20px}
+.text-action{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:#fff;border-radius:999px;padding:10px 17px;font:inherit;font-weight:800;cursor:pointer}
+.text-action:hover{background:rgba(255,255,255,.09);transform:translateY(-1px)}
+.editor-picks-section{max-width:1420px;margin:42px auto 28px}
+.editor-picks-section .section-heading{margin-bottom:18px}
+.editor-picks-section .section-heading h2{font-size:clamp(28px,3vw,42px);margin:4px 0 6px}
+.editor-pick-card{min-height:190px}
+@media(max-width:700px){.tool-actions{justify-content:flex-start}.editor-picks-section{margin-top:34px}}
