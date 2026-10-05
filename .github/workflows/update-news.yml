@@ -9,6 +9,10 @@ on:
 permissions:
   contents: write
 
+# Security note: this workflow needs repository write access only to publish
+# the generated news.json to the dedicated automated-news branch. No external
+# feed content is executed as code and third-party Actions are SHA-pinned.
+
 concurrency:
   group: novliri-news-update
   cancel-in-progress: false
@@ -29,7 +33,9 @@ jobs:
           deno-version: v1.x
 
       - name: Generate NOVLIRI news feed
-        run: deno run --allow-net --allow-read --allow-write update-news.js
+        # Limit Deno filesystem access to the one generated file. Network access
+        # is still required for the small allowlisted RSS/Atom source list.
+        run: deno run --allow-net --allow-read --allow-write=news.json update-news.js
 
       - name: Validate generated JSON
         run: |
