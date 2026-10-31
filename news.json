@@ -1,5 +1,45 @@
 [
   {
+    "title": "Gemini 4 Carbon: Our next frontier model",
+    "summary": "A recent artificial intelligence development reported by Google DeepMind. Open the original source for the complete report.",
+    "category": "AI News",
+    "source": "Google DeepMind",
+    "published": "2026-10-28T17:00:58.000Z",
+    "url": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/"
+  },
+  {
+    "title": "Genie 4: A new generation of world simulation",
+    "summary": "A recent artificial intelligence development reported by Google DeepMind. Open the original source for the complete report.",
+    "category": "AI News",
+    "source": "Google DeepMind",
+    "published": "2026-10-27T16:01:38.000Z",
+    "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/"
+  },
+  {
+    "title": "Beyond tree cover: mapping the world’s forest types",
+    "summary": "A recent AI tool or product development from Google DeepMind. Visit the original source to learn what was announced and how it works.",
+    "category": "AI Tools",
+    "source": "Google DeepMind",
+    "published": "2026-10-22T14:30:24.000Z",
+    "url": "https://deepmind.google/blog/beyond-tree-cover-mapping-the-worlds-forest-types/"
+  },
+  {
+    "title": "Widespread PHP Flaw May Cause Many Site Outages Today",
+    "summary": "A recent cybersecurity development reported by Krebs on Security. Read the original report for technical details and recommended actions.",
+    "category": "Cybersecurity",
+    "source": "Krebs on Security",
+    "published": "2026-10-21T15:26:07.000Z",
+    "url": "https://krebsonsecurity.com/2026/10/widespread-php-flaw-may-cause-many-site-outages-today/"
+  },
+  {
+    "title": "Feds Suspect Ransom Negotiator Ran ShinyHunters Extortion Site",
+    "summary": "A recent cybersecurity development reported by Krebs on Security. Read the original report for technical details and recommended actions.",
+    "category": "Cybersecurity",
+    "source": "Krebs on Security",
+    "published": "2026-10-19T13:48:56.000Z",
+    "url": "https://krebsonsecurity.com/2026/10/feds-suspect-ransom-negotiator-ran-shinyhunters-extortion-site/"
+  },
+  {
     "title": "Stay current with the biggest developments in artificial intelligence",
     "summary": "NOVLIRI Learn will surface important AI developments and explain why they may matter to people using AI at work, school, business, or home.",
     "category": "AI News",
@@ -54,53 +94,5 @@
     "source": "NOVLIRI",
     "published": "2026-09-26T06:00:00Z",
     "url": "https://novliri.com/"
-  },
-  {
-    "title": "U.S. Soldier Gets 70 Months in Prison for AT&T, Verizon Extortions",
-    "summary": "A recent cybersecurity development reported by Krebs on Security. Read the original report for technical details and recommended actions.",
-    "category": "Cybersecurity",
-    "source": "Krebs on Security",
-    "published": "2026-09-25T21:44:40.000Z",
-    "url": "https://krebsonsecurity.com/2026/09/u-s-soldier-gets-70-months-in-prison-for-att-verizon-extortions/"
-  },
-  {
-    "title": "Introducing Gemini 3.8 Live with Live Avatar",
-    "summary": "A recent artificial intelligence development reported by Google DeepMind. Open the original source for the complete report.",
-    "category": "AI News",
-    "source": "Google DeepMind",
-    "published": "2026-09-24T16:20:39.000Z",
-    "url": "https://deepmind.google/blog/introducing-gemini-38-live-with-live-avatar/"
-  },
-  {
-    "title": "Advancing Private AI Compute with secure, server-side memory",
-    "summary": "A recent artificial intelligence development reported by Google DeepMind. Open the original source for the complete report.",
-    "category": "AI News",
-    "source": "Google DeepMind",
-    "published": "2026-09-23T16:00:57.000Z",
-    "url": "https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory/"
-  },
-  {
-    "title": "Gemini 3.8 text-to-speech says hello",
-    "summary": "A recent artificial intelligence development reported by Google DeepMind. Open the original source for the complete report.",
-    "category": "AI News",
-    "source": "Google DeepMind",
-    "published": "2026-09-23T15:25:14.000Z",
-    "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech/"
-  },
-  {
-    "title": "Data Broker Radaris Loses Domains in Privacy Fight",
-    "summary": "A recent cybersecurity development reported by Krebs on Security. Read the original report for technical details and recommended actions.",
-    "category": "Cybersecurity",
-    "source": "Krebs on Security",
-    "published": "2026-09-16T18:14:22.000Z",
-    "url": "https://krebsonsecurity.com/2026/09/data-broker-radaris-loses-domains-in-privacy-fight/"
-  },
-  {
-    "title": "Introducing Gemini 3.8 Live and 3.8 Live Extended Thinking",
-    "summary": "A recent artificial intelligence development reported by Google DeepMind. Open the original source for the complete report.",
-    "category": "AI News",
-    "source": "Google DeepMind",
-    "published": "2026-09-15T17:05:57.000Z",
-    "url": "https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking/"
   }
 ]
